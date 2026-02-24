@@ -66,5 +66,7 @@ jobs:
             docker pull ${{ secrets.DOCKER_USERNAME }}/mean-backend:latest
             docker pull ${{ secrets.DOCKER_USERNAME }}/mean-frontend:latest
 
-            docker-compose down
+            # 🔥 Remove old containers if they exist
+            docker rm -f mean-mongodb mean-backend mean-frontend mean-nginx || true
+
             docker-compose up -d
