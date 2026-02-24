@@ -11,8 +11,7 @@ services:
     restart: unless-stopped
 
   backend:
-    image: ${DOCKER_USERNAME:-local}/mean-backend:latest
-    build: ./backend
+    image: ${DOCKER_USERNAME}/mean-backend:latest
     container_name: mean-backend
     ports:
       - "8080:8080"
@@ -24,10 +23,8 @@ services:
     restart: unless-stopped
 
   frontend:
-    image: ${DOCKER_USERNAME:-local}/mean-frontend:latest
-    build: ./frontend
+    image: ${DOCKER_USERNAME}/mean-frontend:latest
     container_name: mean-frontend
-    # Exposing port purely for direct access if needed, but nginx will proxy
     ports:
       - "8081:80"
     depends_on:
